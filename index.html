@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#1976d2" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  </head>
+  <body>
+    <h1>Current Weather</h1>
+    <div class="header">
+      <select id="county">
+        <option value="54.7175,-6.2110">Antrim</option>
+        <option value="54.3503,-6.6528">Armagh</option>
+        <option value="52.8365,-6.9341">Carlow</option>
+        <option value="53.9908,-7.3606">Cavan</option>
+        <option value="52.8436,-8.9864">Clare</option>
+        <option value="51.8985,-8.4756">Cork</option>
+        <option value="54.9966,-7.3086">Derry</option>
+        <option value="54.8316,-7.4832">Donegal</option>
+        <option value="54.3281,-5.7157">Down</option>
+        <option value="53.3498,-6.2603" selected>Dublin</option>
+        <option value="54.3438,-7.6315">Fermanagh</option>
+        <option value="53.2707,-9.0568">Galway</option>
+        <option value="52.2704,-9.7026">Kerry</option>
+        <option value="53.2158,-6.6669">Kildare</option>
+        <option value="52.6541,-7.2448">Kilkenny</option>
+        <option value="53.0344,-7.2998">Laois</option>
+        <option value="53.9469,-8.0900">Leitrim</option>
+        <option value="52.6638,-8.6267">Limerick</option>
+        <option value="53.7276,-7.7933">Longford</option>
+        <option value="54.0009,-6.4059">Louth</option>
+        <option value="53.8567,-9.2988">Mayo</option>
+        <option value="53.6528,-6.6814">Meath</option>
+        <option value="54.2492,-6.9683">Monaghan</option>
+        <option value="53.2739,-7.4889">Offaly</option>
+        <option value="53.6279,-8.1897">Roscommon</option>
+        <option value="54.2766,-8.4761">Sligo</option>
+        <option value="52.6819,-7.8022">Tipperary</option>
+        <option value="54.5977,-7.3099">Tyrone</option>
+        <option value="52.2593,-7.1101">Waterford</option>
+        <option value="53.5259,-7.3381">Westmeath</option>
+        <option value="52.3369,-6.4633">Wexford</option>
+        <option value="52.9808,-6.0446">Wicklow</option>
+      </select>
+      <button id="refresh-button">
+        <img src="IMAGES/refresh-button.png" alt="Refresh" />
+      </button>
+    </div>
+    <div class="weather-info">
+      <img
+        src=""
+        class="weather-icon"
+        id="weather-icon"
+        src=""
+        alt="Weather Icon"
+      />
+      <div class="weather-details">
+        <p class="temperature" id="temperature"></p>
+        <p class="description"><span id="description-text">Cloudy</span></p>
+        <p class="feels-like" id="feels-like"></p>
+      </div>
+    </div>
+    <div class="weather-stats">
+      <div class="stat-box">
+        <div class="stat-icon">≋</div>
+        <p class="stat-label">Wind</p>
+        <p class="stat-value" id="wind">15 km/h</p>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">💧</div>
+        <p class="stat-label">Humidity</p>
+        <p class="stat-value" id="humidity">78%</p>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">🌡️</div>
+        <p class="stat-label">High</p>
+        <p class="stat-value" id="high">13°</p>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-icon">❄</div>
+        <p class="stat-label">Low</p>
+        <p class="stat-value" id="low">7°</p>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
