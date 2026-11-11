@@ -85,6 +85,7 @@ function createWeatherUrl() {
 }
 
 async function updateWeather() {
+  updateCountyName();
   try {
     const response = await fetch(createWeatherUrl());
 
@@ -136,4 +137,11 @@ if ("serviceWorker" in navigator) {
         console.error("Service worker registration failed:", error);
       });
   });
+}
+function updateCountyName() {
+  const countySelect = $("county");
+  const selectedCounty =
+    countySelect.options[countySelect.selectedIndex].textContent;
+
+  $("county-name").textContent = selectedCounty;
 }

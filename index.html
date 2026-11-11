@@ -4,14 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Irish-Weather</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="styles.css" />
     <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#1976d2" />
     <link rel="apple-touch-icon" href="icons/icon-192.png" />
   </head>
   <body>
-    <h1>Current Weather</h1>
+    <h1>Irish Weather</h1>
+    <p>Current conditions across all 32 counties</p>
+    <p>
+      Data from
+      <a
+        href="https://open-meteo.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="external-link"
+        >Open-Meteo</a
+      >
+    </p>
+    <hr class="divider" />
     <div class="header">
+      <p>Choose a County</p>
       <select id="county">
         <option value="54.7175,-6.2110">Antrim</option>
         <option value="54.3503,-6.6528">Armagh</option>
@@ -46,49 +67,62 @@
         <option value="52.3369,-6.4633">Wexford</option>
         <option value="52.9808,-6.0446">Wicklow</option>
       </select>
-      <button id="refresh-button">
-        <img src="IMAGES/refresh-button.png" alt="Refresh" />
-      </button>
+      <button id="refresh-button">Refresh</button>
     </div>
-    <div class="weather-info">
-      <img
-        src=""
-        class="weather-icon"
-        id="weather-icon"
-        src=""
-        alt="Weather Icon"
-      />
-      <div class="weather-details">
-        <p class="temperature" id="temperature"></p>
-        <p class="description"><span id="description-text">Cloudy</span></p>
-        <p class="feels-like" id="feels-like"></p>
-      </div>
-    </div>
-    <div class="weather-stats">
-      <div class="stat-box">
-        <div class="stat-icon">≋</div>
-        <p class="stat-label">Wind</p>
-        <p class="stat-value" id="wind">15 km/h</p>
-      </div>
+    <section class="current-weather" aria-labelledby="current-heading">
+      <header class="section-heading">
+        <h2 id="current-heading"><span id="county-name">Dublin</span> now</h2>
+      </header>
 
-      <div class="stat-box">
-        <div class="stat-icon">💧</div>
-        <p class="stat-label">Humidity</p>
-        <p class="stat-value" id="humidity">78%</p>
-      </div>
+      <div class="current-layout">
+        <div class="weather-visual">
+          <img
+            id="weather-icon"
+            class="weather-icon"
+            src="IMAGES/cloudy.png"
+            width="250"
+            height="250"
+            alt=""
+          />
+        </div>
 
-      <div class="stat-box">
-        <div class="stat-icon">🌡️</div>
-        <p class="stat-label">High</p>
-        <p class="stat-value" id="high">13°</p>
-      </div>
+        <div class="weather-reading">
+          <p class="temperature" id="temperature">…</p>
 
-      <div class="stat-box">
-        <div class="stat-icon">❄</div>
-        <p class="stat-label">Low</p>
-        <p class="stat-value" id="low">7°</p>
+          <p class="description" id="description-text">
+            Waiting for weather data
+          </p>
+
+          <p class="feels-like" id="feels-like">Feels like …</p>
+        </div>
       </div>
-    </div>
+    </section>
+    <section class="details-panel" aria-labelledby="details-heading">
+      <h2 id="details-heading">Today at a glance</h2>
+      <hr class="divider" />
+
+      <dl class="weather-stats">
+        <div class="stat-row">
+          <dt>Wind</dt>
+          <dd id="wind">…</dd>
+        </div>
+
+        <div class="stat-row">
+          <dt>Humidity</dt>
+          <dd id="humidity">…</dd>
+        </div>
+
+        <div class="stat-row">
+          <dt>High</dt>
+          <dd id="high">…</dd>
+        </div>
+
+        <div class="stat-row">
+          <dt>Low</dt>
+          <dd id="low">…</dd>
+        </div>
+      </dl>
+    </section>
     <script src="app.js"></script>
   </body>
 </html>
