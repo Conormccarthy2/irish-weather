@@ -77,6 +77,7 @@ function createWeatherUrl() {
       "weather_code",
     ].join(","),
     daily: ["temperature_2m_max", "temperature_2m_min"].join(","),
+    hourly: "temperature_2m",
     timezone: "auto",
     forecast_days: "1",
   });
@@ -94,6 +95,12 @@ async function updateWeather() {
     }
 
     const data = await response.json();
+    const hourlyTemperatures = data.hourly.time.map((time, index) => ({
+      hour: time.split("T")[1],
+      temperature: data.hourly.temperature_2m[index],
+    }));
+
+    drawTemperatureGraph(hourlyTemperatures);
     console.log(data);
 
     const description = getDescription(data.current.weather_code);
@@ -144,4 +151,53 @@ function updateCountyName() {
     countySelect.options[countySelect.selectedIndex].textContent;
 
   $("county-name").textContent = selectedCounty;
+}
+let temperatureChart;
+
+function drawTemperatureGraph(hourlyTemperatures) {
+  const labels = hourlyTemperatures.map((item) => item.hour);
+  const temperatures = hourlyTemperatures.map((item) => item.temperature);
+  if (temperatureChart) {
+    temperatureChart.data.labels = labels;
+    temperatureChart.data.datasets[0].data = temperatures;
+    temperatureChart.update();
+    return;
+  }
+
+  temperatureChart = new Chart($("hourly-chart"), {
+    type: "line",
+    data: {
+      labels,
+      datasets: [
+        {
+          label: "Temperature (°C)",
+          data: temperatures,
+          borderColor: "#7DD3FC",
+          backgroundColor: "rgba(125, 211, 252, 0.15)",
+
+          pointBackgroundColor: "#BAE6FD",
+          pointBorderColor: "#38BDF8",
+          pointHoverBackgroundColor: "#38BDF8",
+          pointHoverBorderColor: "#FFFFFF",
+          fill: true,
+          tension: 0.3,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      onHover(event, elements, chart) {
+        chart.canvas.style.cursor = elements.length ? "pointer" : "default";
+      },
+      scales: {
+        x: {
+          title: { display: true, text: "Hour" },
+        },
+        y: {
+          title: { display: true, text: "Temperature (°C)" },
+        },
+      },
+    },
+  });
 }

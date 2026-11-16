@@ -97,6 +97,13 @@
         </div>
       </div>
     </section>
+    <section class="hourly-panel">
+      <h2>Hourly temperature</h2>
+
+      <div class="chart-container">
+        <canvas id="hourly-chart"></canvas>
+      </div>
+    </section>
     <section class="details-panel" aria-labelledby="details-heading">
       <h2 id="details-heading">Today at a glance</h2>
       <hr class="divider" />
@@ -123,6 +130,7 @@
         </div>
       </dl>
     </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
